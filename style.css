@@ -135,10 +135,25 @@ body {
 	max-width: 850px;
 	gap: 24px;
 	border-radius: 16px;
-	left: 0;
 	align-self: start;
 	margin-bottom: 30px;
 	text-align: start;
+
+	position: relative;
+	overflow: visible;
+}
+.headline-box::after {
+	content: '';
+	position: absolute;
+	bottom: -22px;
+	left: 42px;
+
+	width: 0;
+	height: 0;
+
+	border-left: 14px solid transparent;
+	border-right: 14px solid transparent;
+	border-top: 22px solid var(--bg-light-yellow); /* same bg */
 }
 
 .headline-box h2 {
@@ -240,6 +255,14 @@ body {
 	line-height: 150%;
 }
 
+/* [class*='cc-popup'],
+[class*='fk-cc-popup'],
+[class*='fk-popup-wrapper'],
+[id^='cc-id-'] {
+	opacity: 0 !important;
+	visibility: hidden !important;
+	pointer-events: none !important;
+} */
 /*  budle scetion */
 
 /* --- Bundle Section Wrapper --- */
@@ -445,11 +468,12 @@ body {
 	background: rgba(188, 202, 254, 1);
 	border: none;
 	padding: 12px 14px;
-	font-size: 14px;
+	font-size: 10px;
 	line-height: 18px;
-	color: rgba(108, 117, 125, 1);
+	color: #000000C2;
 	font-weight: 400;
-	cursor: pointer; white-space: nowrap;
+	cursor: pointer;
+	white-space: nowrap;
 	border-radius: 6px;
 }
 
@@ -470,7 +494,7 @@ body {
 	padding: 4px 8px;
 	border-radius: 6px;
 	line-height: 18px;
-	font-size: 14px;
+	font-size: 10px;
 	height: 26px;
 	font-weight: 400;
 }
@@ -487,7 +511,7 @@ body {
 }
 
 .subscribe-text {
-	font-size: 14px;
+	font-size: 10px;
 	margin: 4px 4px;
 	line-height: 18px;
 	font-weight: bold;
@@ -575,23 +599,28 @@ body {
 	background: white;
 	border-radius: 16px;
 	padding: 16px;
+	gap: 16px;
 }
 
 /* List */
 .benefits-list {
 	list-style: none;
 	padding: 0;
+	gap: 16px;
+
 	margin: 0;
 }
 
 .benefits-list li {
 	display: flex;
 	align-items: center;
-	gap: 16px;
+	margin-bottom: 16px;
 	font-size: 18px;
 	line-height: 140%;
-	margin-bottom: 10px;
 	font-weight: 400;
+}
+.benefits-list li:last-child {
+	margin-bottom: 0;
 }
 
 .benefits-list li img {
@@ -599,6 +628,7 @@ body {
 	height: 24px;
 	object-fit: contain;
 	flex-shrink: 0;
+	margin-right: 6px;
 }
 
 /* --- Pricing Section --- */
@@ -649,7 +679,7 @@ body {
 /* Pricing Cards */
 .pricing-card {
 	border: 1px solid #e5e7eb;
-	border-radius: 12px;
+	border-radius: 16px;
 	text-align: center;
 	position: relative;
 	background: white;
@@ -657,14 +687,14 @@ body {
 
 	height: 100%;
 	max-width: 360px;
-	transition: transform 0.2s;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
 }
 .product-item-wraper {
 	padding: 16px 12px;
 }
-.pricing-card:hover {
-	transform: translateY(-3px);
+.btn-claim i {
+	color: white;
+	margin-left: 2px;
 }
 
 .card-tag {
@@ -680,7 +710,6 @@ body {
 	font-weight: 800;
 	text-transform: uppercase;
 	width: 80%;
-	/* letter-spacing: 0.5px; */
 }
 .pricing-card i {
 	height: 16px;
@@ -693,6 +722,9 @@ body {
 	line-height: 120%;
 	font-weight: 900;
 	padding-top: 13px;
+}
+.pricing-col:nth-child(1) .pricing-card h4 {
+	padding-top: 0;
 }
 .pricing-card .free-ship {
 	font-size: 14px;
@@ -732,7 +764,7 @@ body {
 	color: #ef4444;
 	line-height: 24px;
 	font-size: 14px;
-	margin-right: 5px;
+	margin-right: 4px;
 	font-weight: bold;
 }
 
@@ -751,10 +783,12 @@ body {
 	color: white;
 	font-size: 14px;
 	width: 14px;
+	margin-left: 6px;
 }
 .pricing-card i {
 	display: inline-flex;
 	align-items: center;
+	color: white;
 	justify-content: center;
 	line-height: 1;
 }
@@ -765,6 +799,7 @@ body {
 .card-divider {
 	border-top: 2px dotted rgba(0, 0, 0, 0.15);
 	margin: 0;
+	padding: 0;
 }
 .pricing-card .total {
 	font-size: 14px;
@@ -783,7 +818,7 @@ body {
 	font-weight: 400;
 }
 .pricing-card h4 {
-	margin: 0 0 8px;
+	margin: 0 0 0px;
 }
 
 .free-ship {
@@ -796,27 +831,43 @@ body {
 	flex-direction: column;
 	gap: 8px;
 }
-
-/* 🔹 DOTTED DIVIDER */
-.card-divider {
-	border-top: 2px dotted rgba(0, 0, 0, 0.15);
-	margin: 8px 0;
+.subscription-section {
+	display: block;
 }
 
-/* 🔹 TEXT SAFETY */
+.purchase-section {
+	display: none;
+}
+
+.btn-wrapper button.active {
+	background: #fff;
+	color: #000;
+	font-weight: 700;
+}
+.btn-wrapper button {
+	transition: all 0.3s ease;
+}
+
+.btn-wrapper button:not(.active) {
+	background: transparent;
+
+	opacity: 0.6;
+}
+
+.card-divider {
+	border-top: 2px dotted rgba(0, 0, 0, 0.15);
+	margin: 0;
+}
 
 .footer-link {
 	text-align: center;
-	margin: 30px 0;
-	color: #000;
+	margin-top: 30px;
 }
 .footer-link a {
-	color: #000;
 	font-size: 16px;
-	font-weight: 500;
+	font-weight: 400;
 	line-height: 24px;
 	text-decoration: underline;
-	font-size: 16px;
 	line-height: 24px;
 }
 
@@ -829,7 +880,7 @@ body {
 	padding: 10px 40px 30px;
 }
 .footer-top .container {
-	height: 20px;
+	height: 30px;
 	margin: 0;
 	padding: 0;
 }
@@ -839,21 +890,23 @@ body {
 	justify-content: space-between;
 	align-items: flex-start;
 	gap: 40px;
-	max-width: 1200px;
+	max-width: 100%;
 	margin: auto;
 }
 
 .copyright {
-	font-size: 13px;
-	color: rgba(107, 114, 128, 1);
+	font-size: 12px;
+	color: #6c757d;
+	line-height: 16px;
+
 	white-space: nowrap;
 }
 
 .disclaimer {
-	font-size: 13px;
-	color: rgba(107, 114, 128, 1);
-	line-height: 1.6;
-	max-width: 800px;
+	font-size: 12px;
+	color: #6c757d;
+	line-height: 16px;
+	max-width: 1040px;
 }
 
 @keyframes pulse {
@@ -871,11 +924,12 @@ body {
 /* Mobile Adjustments */
 @media (max-width: 768px) {
 	.pricing-col {
-		margin-bottom: 30px;
+		margin-bottom: 20px;
 	}
 	.pricing-card {
 		padding-top: 30px;
 	}
+
 	.speech-text {
 		font-size: 0.85rem;
 	}
@@ -903,6 +957,16 @@ body {
 	}
 	.mobile {
 		display: inline;
+	}
+	.pricing-col:nth-child(1) {
+		order: 3;
+		margin-bottom: 0;
+	}
+	.pricing-col:nth-child(2) {
+		order: 2;
+	}
+	.pricing-col:nth-child(3) {
+		order: 1;
 	}
 	/* Header */
 	.top-header {
@@ -1014,7 +1078,7 @@ body {
 		width: 100%;
 	}
 	.button-wrapper {
-		margin-bottom: 20px;
+		margin-bottom: 30px;
 	}
 	.progress-steps .active {
 		color: #fff;
@@ -1168,10 +1232,7 @@ body {
 	/* RIGHT SIDE */
 	.benefits-card {
 		flex: 1;
-		border: 1px solid #10b981;
-		background: #ecfdf5;
-		border-radius: 8px;
-		padding: 18px;
+		margin-bottom: 20px;
 	}
 
 	.benefits-title {
@@ -1186,13 +1247,11 @@ body {
 	}
 
 	.benefits-list li {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		font-size: 14px;
-		font-weight: 500;
-		margin-bottom: 8px;
-		color: #065f46;
+		font-size: 16px;
+		margin-bottom: 16px;
+	}
+	.benefits-list li:last-child {
+		margin-bottom: 0;
 	}
 	.footer-top {
 		padding: 24px 16px;
@@ -1362,24 +1421,12 @@ body {
 	.pricing-card {
 		width: 100%;
 		max-width: 100%;
+		padding-top: 0px;
 	}
 
 	.product-item-wraper {
 		padding: 16px;
 		gap: 8px;
-	}
-
-	.pricing-card h4 {
-		font-size: 22px;
-	}
-
-	.price-large {
-		font-size: 28px;
-	}
-
-	.btn-claim {
-		padding: 20px 16px;
-		font-size: 16px;
 	}
 
 	.card-tag {
@@ -1412,12 +1459,16 @@ body {
 	}
 
 	.bundle-image {
-		order: 1; /* 🔥 pehle image */
+		order: 1;
 		width: 100%;
 	}
 
 	.bundle-cards {
-		order: 2; /* 🔥 baad mein cards */
+		order: 2;
 		width: 100%;
+	}
+
+	.pricing-col:nth-child(1) .pricing-card h4 {
+		padding-top: 0;
 	}
 }
